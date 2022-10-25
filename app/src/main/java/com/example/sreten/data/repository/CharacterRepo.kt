@@ -7,6 +7,7 @@ import javax.inject.Inject
 class CharacterRepo @Inject constructor(
     private val characterApi: CharacterApi
 ) {
+
     suspend fun getCharacter(): List<Character>{
         return characterApi.getCharacter()
     }
