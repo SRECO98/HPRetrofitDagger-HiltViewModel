@@ -19,7 +19,7 @@ class HomeViewModel @Inject constructor(
     val state: StateFlow<List<Character>>
     get() = _state //get() { return _state }
 /*ViewModel is a class that is responsible for preparing and managing the data for an Activity or a
-Fragment . It also handles the communication of the Activity / Fragment with the rest of the
+Fragment. It also handles the communication of the Activity / Fragment with the rest of the
 application (e.g. calling the business logic classes).*/
     init {//However, suspending functions can only be invoked by another suspending function or within a coroutine.
         viewModelScope.launch {    //// Coroutine that will be canceled when the ViewModel is cleared.
