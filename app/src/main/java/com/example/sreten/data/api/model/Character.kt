@@ -43,5 +43,5 @@ data class Character(
     @Json(name = "wizard")
     val wizard: Boolean,
     @Json(name = "yearOfBirth")
-    val yearOfBirth: String
+    val yearOfBirth: String?
 )

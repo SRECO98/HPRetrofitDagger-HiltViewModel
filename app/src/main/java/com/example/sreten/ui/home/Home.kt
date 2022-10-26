@@ -21,7 +21,7 @@ fun HomeScreen() {
     val homeViewModel = viewModel(modelClass = HomeViewModel::class.java)
     val state by homeViewModel.state.collectAsState()
 
-    LazyColumn {
+    LazyColumn() {
         if (state.isEmpty()) {
             item {
                 CircularProgressIndicator(
@@ -54,7 +54,7 @@ fun CharacterImageCard(character: Character) {
                 modifier = Modifier
                     .fillMaxSize()
                     .height(200.dp),
-                contentScale = ContentScale.FillBounds
+                contentScale = ContentScale.Crop
             )
             
             Surface(
