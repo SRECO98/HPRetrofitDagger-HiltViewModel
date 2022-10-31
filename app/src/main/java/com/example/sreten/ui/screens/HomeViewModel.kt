@@ -1,4 +1,4 @@
-package com.example.sreten.ui.home
+package com.example.sreten.ui.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,7 +15,7 @@ class HomeViewModel @Inject constructor(
     private val characterRepo: CharacterRepo
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(emptyList<Character>())
+    val _state = MutableStateFlow(emptyList<Character>())
     val state: StateFlow<List<Character>>
     get() = _state //get() { return _state }
 /*ViewModel is a class that is responsible for preparing and managing the data for an Activity or a
@@ -27,5 +27,4 @@ application (e.g. calling the business logic classes).*/
             _state.value = characters
         }
     }
-
 }

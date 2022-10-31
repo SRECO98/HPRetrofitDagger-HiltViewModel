@@ -1,6 +1,7 @@
-package com.example.sreten.ui.home
+package com.example.sreten.ui.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -13,13 +14,30 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
 import com.example.sreten.data.api.model.Character
+import com.example.sreten.ui.screens.navigation.Screen
 
 @Composable
-fun HomeScreen() {
+fun StartHomeScreen(
+    navHostController: NavHostController
+){
+
     val homeViewModel = viewModel(modelClass = HomeViewModel::class.java)
     val state by homeViewModel.state.collectAsState()
+
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colors.background
+    ){
+        HomeScreen(navHostController, state)
+    }
+}
+
+@Composable
+fun HomeScreen(navController: NavHostController, state: List<Character>) {
+
 
     LazyColumn() {
         if (state.isEmpty()) {
@@ -33,19 +51,29 @@ fun HomeScreen() {
         }
 
         items(state) { character: Character ->
-            CharacterImageCard(character = character)
+            CharacterImageCard(
+                character = character,
+                navController = navController
+            )
         }
     }
 }
 
 @Composable
-fun CharacterImageCard(character: Character) {
+fun CharacterImageCard(
+    character: Character,
+    navController: NavHostController
+) {
     val imagePainter = rememberImagePainter(data = character.image)
 
     //holding image
     Card(
         shape = MaterialTheme.shapes.medium,
-        modifier = Modifier.padding(16.dp)
+        modifier = Modifier
+            .padding(16.dp)
+            .clickable {    //transport to second screen (second compose)
+                navController.navigate(route = Screen.CharacterScreen.route)
+            }
     ) {
         Box {
             Image(
