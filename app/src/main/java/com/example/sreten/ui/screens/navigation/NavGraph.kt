@@ -4,13 +4,15 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.sreten.ui.screens.HomeViewModel
 import com.example.sreten.ui.screens.StartCharScreen
 import com.example.sreten.ui.screens.StartHomeScreen
 
 
 @Composable
 fun SetupNavGraph(
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    homeViewModel: HomeViewModel,
 ){
     NavHost(
         navController = navHostController,
@@ -20,7 +22,7 @@ fun SetupNavGraph(
         composable(
             route = Screen.HomeScreen.route
         ){
-            StartHomeScreen(navHostController = navHostController) //first compsoe that will be shown is HoemScreen()
+            StartHomeScreen(navHostController = navHostController, homeViewModel = homeViewModel) //first compsoe that will be shown is HoemScreen()
         }
 
         composable(

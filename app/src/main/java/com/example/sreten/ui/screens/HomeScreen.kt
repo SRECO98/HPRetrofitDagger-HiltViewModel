@@ -21,10 +21,10 @@ import com.example.sreten.ui.screens.navigation.Screen
 
 @Composable
 fun StartHomeScreen(
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    homeViewModel: HomeViewModel,
 ){
 
-    val homeViewModel = viewModel(modelClass = HomeViewModel::class.java)
     val state by homeViewModel.state.collectAsState()
 
     Surface(

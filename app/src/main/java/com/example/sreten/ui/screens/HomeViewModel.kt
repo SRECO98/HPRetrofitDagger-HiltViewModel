@@ -15,7 +15,8 @@ class HomeViewModel @Inject constructor(
     private val characterRepo: CharacterRepo
 ) : ViewModel() {
 
-    val _state = MutableStateFlow(emptyList<Character>())
+
+    private val _state = MutableStateFlow(emptyList<Character>())
     val state: StateFlow<List<Character>>
     get() = _state //get() { return _state }
 /*ViewModel is a class that is responsible for preparing and managing the data for an Activity or a
@@ -23,8 +24,12 @@ Fragment. It also handles the communication of the Activity / Fragment with the 
 application (e.g. calling the business logic classes).*/
     init {//However, suspending functions can only be invoked by another suspending function or within a coroutine.
         viewModelScope.launch {    //// Coroutine that will be canceled when the ViewModel is cleared.
+            /*repeat(5){
+                val characters = characterRepo.getCharacter()
+            _state.value = characters
+            }*/
             val characters = characterRepo.getCharacter()
             _state.value = characters
         }
     }
-}
+}//jesi tu
