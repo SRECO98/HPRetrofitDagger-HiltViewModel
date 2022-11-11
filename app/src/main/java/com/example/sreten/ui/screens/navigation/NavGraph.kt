@@ -33,10 +33,12 @@ fun SetupNavGraph(
             val character = navHostController.previousBackStackEntry?.savedStateHandle
                 ?.get<com.example.sreten.data.api.model.Character>("character")
             character?.let { //if this person exist we will navigate to the detail screen.
-                CharScreen(navHostController = navHostController)
+                CharScreen(
+                    navHostController = navHostController,
+                    character = character
+                )
             }
 
         }
-
     }
 }
