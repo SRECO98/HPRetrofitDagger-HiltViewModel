@@ -1,9 +1,12 @@
 package com.example.sreten.data.api.model
 
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @JsonClass(generateAdapter = true)
 data class Character(
     @Json(name = "actor")
@@ -44,4 +47,4 @@ data class Character(
     val wizard: Boolean,
     @Json(name = "yearOfBirth")
     val yearOfBirth: String?
-)
+) : Parcelable

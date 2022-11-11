@@ -14,15 +14,15 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    lateinit var navController: NavHostController
+    lateinit var navHostController: NavHostController
     private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             SretenTheme {
-                navController = rememberNavController()
-                SetupNavGraph(navHostController = navController, homeViewModel = viewModel)
+                navHostController = rememberNavController()
+                SetupNavGraph(navHostController = navHostController, homeViewModel = viewModel)
             }
         }
     }

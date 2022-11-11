@@ -28,7 +28,7 @@ fun SetupNavGraph(
         composable(
             route = Screen.CharacterScreen.route
         ){
-            CharScreen(navHostController = navHostController) //first compsoe that will be shown is HoemScreen()
+            CharScreen(navHostController = navHostController)
         }
 
     }
