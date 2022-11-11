@@ -71,6 +71,7 @@ fun CharacterImageCard(
         modifier = Modifier
             .padding(16.dp)
             .clickable {    //transport to second screen (second compose)
+                navController.currentBackStackEntry?.savedStateHandle?.set("character", character)
                 navController.navigate(route = Screen.CharacterScreen.route)
             }
     ) {

@@ -22,13 +22,20 @@ fun SetupNavGraph(
         composable(
             route = Screen.HomeScreen.route
         ){
-            StartHomeScreen(navHostController = navHostController, homeViewModel = homeViewModel) //first compsoe that will be shown is HoemScreen()
+            //first compsoe that will be shown is HoemScreen()
+            StartHomeScreen(navHostController = navHostController, homeViewModel = homeViewModel)
         }
 
         composable(
             route = Screen.CharacterScreen.route
         ){
-            CharScreen(navHostController = navHostController)
+            // he who called me (Main screen called after clicking image
+            val character = navHostController.previousBackStackEntry?.savedStateHandle
+                ?.get<com.example.sreten.data.api.model.Character>("character")
+            character?.let { //if this person exist we will navigate to the detail screen.
+                CharScreen(navHostController = navHostController)
+            }
+
         }
 
     }
