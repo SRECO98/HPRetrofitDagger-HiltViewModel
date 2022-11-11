@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.sreten.ui.screens.CharScreen
 import com.example.sreten.ui.screens.HomeViewModel
-import com.example.sreten.ui.screens.StartCharScreen
 import com.example.sreten.ui.screens.StartHomeScreen
 
 
@@ -28,7 +28,7 @@ fun SetupNavGraph(
         composable(
             route = Screen.CharacterScreen.route
         ){
-            StartCharScreen(navHostController) //first compsoe that will be shown is HoemScreen()
+            CharScreen(navHostController = navHostController) //first compsoe that will be shown is HoemScreen()
         }
 
     }
