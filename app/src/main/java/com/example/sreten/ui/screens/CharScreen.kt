@@ -29,7 +29,6 @@ fun CharScreen(
         modifier = Modifier
             .fillMaxSize()
             .border(10.dp, color = Color(47, 110, 54))
-            .clip(RoundedCornerShape(100.dp))
             .padding(10.dp),
         topBar = {
             ToppAppBarCompose(
