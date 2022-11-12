@@ -19,6 +19,8 @@ class HomeViewModel @Inject constructor(
     private val _state = MutableStateFlow(emptyList<Character>())
     val state: StateFlow<List<Character>>
     get() = _state //get() { return _state }
+
+
 /*ViewModel is a class that is responsible for preparing and managing the data for an Activity or a
 Fragment. It also handles the communication of the Activity / Fragment with the rest of the
 application (e.g. calling the business logic classes).*/
@@ -32,4 +34,4 @@ application (e.g. calling the business logic classes).*/
             _state.value = characters
         }
     }
-}//jesi tu
+}
