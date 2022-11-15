@@ -2,8 +2,10 @@ package com.example.sreten.data.api.model
 
 
 import android.os.Parcelable
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
@@ -17,9 +19,9 @@ data class Character(
     @Json(name = "alive")
     val alive: Boolean,
     @Json(name = "alternate_actors")
-    val alternateActors: List<String>? = null,
+    val alternateActors: List<String>,
     @Json(name = "alternate_names")
-    val alternateNames: List<String>? = null,
+    val alternateNames: List<String>,
     @Json(name = "ancestry")
     val ancestry: String,
     @Json(name = "dateOfBirth")
@@ -46,6 +48,7 @@ data class Character(
     @Json(name = "species")
     val species: String,
     @Json(name = "wand")
+    @Embedded
     val wand: Wand,
     @Json(name = "wizard")
     val wizard: Boolean,

@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.AndroidViewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
 import com.example.sreten.data.api.model.Character
@@ -31,7 +32,7 @@ fun StartHomeScreen(
     homeViewModel: HomeViewModel,
 ){
 
-    val state by homeViewModel.state.collectAsState()
+    //val state by homeViewModel.characters.observe
 
     Scaffold(
         modifier = Modifier
@@ -41,7 +42,7 @@ fun StartHomeScreen(
         backgroundColor = Color(11, 192, 29),
         topBar = {AppTopBarMainPage()}
     ){
-        HomeScreen(navHostController, state)
+        //HomeScreen(navHostController, state)
     }
 }
 

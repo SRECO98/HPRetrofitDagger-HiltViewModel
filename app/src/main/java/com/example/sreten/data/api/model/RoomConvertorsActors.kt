@@ -6,15 +6,15 @@ import com.google.gson.reflect.TypeToken
 
 class RoomConvertorsActors {
     @TypeConverter
-    fun saveAddressList(listOfString: List<String?>?): String? {
-        return Gson().toJson(listOfString)
+        fun fromString(value: String?): List<String> {
+        val listType = object : TypeToken<List<String>>() {}.type
+        return Gson().fromJson(value, listType)
     }
 
     @TypeConverter
-    fun getAddressList(listOfString: String?): List<String?>? {
-        return Gson().fromJson(
-            listOfString,
-            object : TypeToken<List<String?>?>() {}.type
-        )
+    fun fromList(list: List<String>?): String {
+            return Gson().toJson(list)
     }
+
+
 }
