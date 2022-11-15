@@ -2,10 +2,13 @@ package com.example.sreten.data.api.model
 
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
+@Entity(tableName = "character")
 @Parcelize
 @JsonClass(generateAdapter = true)
 data class Character(
@@ -14,9 +17,9 @@ data class Character(
     @Json(name = "alive")
     val alive: Boolean,
     @Json(name = "alternate_actors")
-    val alternateActors: List<String>,
+    val alternateActors: List<String>? = null,
     @Json(name = "alternate_names")
-    val alternateNames: List<String>,
+    val alternateNames: List<String>? = null,
     @Json(name = "ancestry")
     val ancestry: String,
     @Json(name = "dateOfBirth")
@@ -35,6 +38,7 @@ data class Character(
     val house: String,
     @Json(name = "image")
     val image: String,
+    @PrimaryKey
     @Json(name = "name")
     val name: String,
     @Json(name = "patronus")
