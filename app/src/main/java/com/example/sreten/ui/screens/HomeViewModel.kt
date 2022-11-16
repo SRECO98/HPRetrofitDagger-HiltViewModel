@@ -17,7 +17,7 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
     //Flow is more flexible but LiveData is easier to use between ViewModel and UI
     //asLiveData to turn flow we get back from method to LiveData
-    val characters = characterRepo.getCharacters().asLiveData()
+    val characters = characterRepo.getCharacters()
 
 
 }

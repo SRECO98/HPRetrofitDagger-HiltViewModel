@@ -5,10 +5,12 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -25,6 +27,8 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
 import com.example.sreten.data.api.model.Character
 import com.example.sreten.ui.screens.navigation.Screen
+import com.example.util.Resource
+import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun StartHomeScreen(
@@ -32,7 +36,7 @@ fun StartHomeScreen(
     homeViewModel: HomeViewModel,
 ){
 
-    //val state by homeViewModel.characters.observe
+    val state = homeViewModel.characters.collectAsState(Resource.Loading())
 
     Scaffold(
         modifier = Modifier
@@ -42,30 +46,34 @@ fun StartHomeScreen(
         backgroundColor = Color(11, 192, 29),
         topBar = {AppTopBarMainPage()}
     ){
-        //HomeScreen(navHostController, state)
+        HomeScreen(navHostController, state)
     }
 }
 
 @Composable
-fun HomeScreen(navController: NavHostController, state: List<Character>) {
+fun HomeScreen(navController: NavHostController, state: State<Resource<List<Character>>>) {
 
+    when(state.value){
+        is Resource.Error -> TODO()
 
-    LazyColumn() {
-        if (state.isEmpty()) {
-            item {
-                CircularProgressIndicator(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .wrapContentSize(align = Alignment.Center)
-                )
-            }
+        is Resource.Loading -> {
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .wrapContentSize(align = Alignment.Center)
+            )
         }
 
-        items(state) { character: Character ->
-            CharacterImageCard(
-                character = character,
-                navController = navController
-            )
+        is Resource.Success -> {
+            LazyColumn{
+                if(state.value.data == null) return@LazyColumn
+                items(state.value.data!!){ character: Character ->
+                    CharacterImageCard(
+                        character = character,
+                        navController = navController,
+                    )
+                }
+            }
         }
     }
 }
