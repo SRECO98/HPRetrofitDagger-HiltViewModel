@@ -77,15 +77,14 @@ fun HomeScreen(navController: NavHostController, state: State<Resource<List<Char
         }
     }
 }
-
 @Composable
 fun CharacterImageCard(
     character: Character,
     navController: NavHostController
 ) {
-    val imagePainter = rememberImagePainter(data = character.image)
 
     //holding image
+    val imagePainter = rememberImagePainter(data = character.image)
     Card(
         shape = MaterialTheme.shapes.medium,
         modifier = Modifier
