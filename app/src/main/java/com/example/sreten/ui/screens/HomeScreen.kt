@@ -49,7 +49,7 @@ fun HomeScreen(
 
     when(state.value){
         is Resource.Error -> {
-
+            //Error Message
         }
 
         is Resource.Loading -> {
