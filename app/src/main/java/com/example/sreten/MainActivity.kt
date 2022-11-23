@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.sreten.data.api.ApiConstants
 import com.example.sreten.ui.screens.HomeViewModel
 import com.example.sreten.ui.screens.navigation.SetupNavGraph
 import com.example.sreten.ui.theme.SretenTheme
@@ -24,10 +26,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SretenTheme {
-                navHostController = rememberNavController()
-                val state = viewModel.characters.collectAsState(Resource.Loading())
-                SetupNavGraph(navHostController = navHostController, homeViewModel = viewModel, state = state)
+                gettingState()
             }
         }
+    }
+
+    @Composable
+    fun gettingState(){
+        navHostController = rememberNavController()
+        val state = viewModel.characters.collectAsState(Resource.Loading())
+        SetupNavGraph(navHostController = navHostController, homeViewModel = viewModel, state = state)
     }
 }

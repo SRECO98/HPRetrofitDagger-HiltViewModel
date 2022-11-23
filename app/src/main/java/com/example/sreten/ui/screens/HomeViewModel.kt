@@ -18,8 +18,6 @@ class HomeViewModel @Inject constructor(
     //Flow is more flexible but LiveData is easier to use between ViewModel and UI
     //asLiveData to turn flow we get back from method to LiveData
     val characters = characterRepo.getCharacters()
-
-
 }
 //OLD CODE
 /*private val _state = MutableStateFlow(emptyList<Character>())

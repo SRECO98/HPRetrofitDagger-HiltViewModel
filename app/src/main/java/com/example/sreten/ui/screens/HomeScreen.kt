@@ -1,4 +1,5 @@
 package com.example.sreten.ui.screens
+import android.widget.Space
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -18,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
+import com.example.sreten.MainActivity
+import com.example.sreten.data.api.ApiConstants
 import com.example.sreten.data.api.model.Character
 import com.example.sreten.ui.screens.navigation.Screen
 import com.example.util.Resource
@@ -41,6 +44,12 @@ fun StartHomeScreen(
     }
 }
 
+/*
+fun downloadAgain(){
+    val mainActivity = MainActivity()
+    mainActivity.gettingState()
+}
+*/
 @Composable
 fun HomeScreen(
     navController: NavHostController,
@@ -49,7 +58,17 @@ fun HomeScreen(
 
     when(state.value){
         is Resource.Error -> {
-            //Error Message
+            Box() {
+                Text(text = "Please check your internet connection and try to open application again.")
+                Spacer(modifier = Modifier.height(8.dp))
+                /*Button(
+                    onClick = {
+
+                    }
+                ){
+
+                }*/
+            }
         }
 
         is Resource.Loading -> {
